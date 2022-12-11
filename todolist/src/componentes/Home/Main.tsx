@@ -1,7 +1,8 @@
 import { Sidebar } from "./Sidebar";
 import { Tasks } from "./Tasks";
 import './styles.css'
-import {createContext, useEffect, useState} from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
+import { AppContext } from "../../App";
 
 export const MainContext = createContext<any>(undefined);
 
@@ -17,7 +18,7 @@ export const Main = () =>
 {
 
     const [listTasks, setListTasks] = useState<TaskModel[]>([]); 
-
+    const {showNotify} = useContext(AppContext)
     const organizaList = (tasks:TaskModel[]) => 
     {
         const taskOrg = []
@@ -38,7 +39,7 @@ export const Main = () =>
     }, [])
 
     return (
-        <MainContext.Provider value={{organizaList, listTasks}}>
+        <MainContext.Provider value={{organizaList, listTasks, showNotify}}>
         <div>
             <section className="sidebar">
                 <Sidebar/> 

@@ -14,14 +14,14 @@ type InputsSignup = {
 export const Signup = () => 
 {
     const {optionUser, setOptionUser, showNotify} = useContext(AppContext); 
+
     const {register, handleSubmit} = useForm<InputsSignup>(); 
+
     const onSignup = async(data:InputsSignup) => 
     {
         try 
         {
             let pass = true
-            let password = data.password
-            let tamPass = password.length
             if(data.password == '' || data.passwordConfirm == '' || data.name == '' || data.user == '') 
             {
                 pass = false 
@@ -35,15 +35,8 @@ export const Signup = () =>
                 }
                 else 
                 {
-                    for(let i = 0; i<tamPass; i++)
-                    {
-                        if(password[i]==' ') 
-                        {
-                            pass = false 
-                            break 
-                        }
-                    }
-                    if(pass)
+                    const verificaEspaco = (password:string) => /\s/g.test(password);
+                    if(!verificaEspaco(data.password))
                     {
                         const config = 
                         {
@@ -57,11 +50,11 @@ export const Signup = () =>
                             toggleOption(optionUser, setOptionUser)
                             showNotify('Usuario cadastrado : )', 'success')
                         }
-                    }
-                    else 
-                    {
-                        showNotify('Não foi possível criar um novo usuário, tente mais tarde.', 'error')
-                    }
+                        else 
+                        {
+                            showNotify('Não foi possível criar um novo usuário, tente mais tarde.', 'error')
+                        }
+                    } else showNotify("Senha não pode conter espaços em branco!", 'error')                    
                 }
             }
         }
