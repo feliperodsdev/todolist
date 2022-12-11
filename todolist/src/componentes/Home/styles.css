@@ -1,0 +1,209 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.header {
+    width: 100%;
+    background-color: black;
+    height: 75px;
+    display: block;
+    text-align: center;
+}
+
+.header_wrapper {
+    width: 94%;
+    margin: auto;
+    height: 50%;
+    display: flex;
+    vertical-align: center;
+    justify-content: space-around;
+    height: 100%;
+}
+.header_title
+{
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+.header_title > h1 {
+    color: #F6F1D1;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+}
+
+.header_menu {
+    display: flex;
+    height: 100%;
+}
+
+.header_menu__info {
+    color: white;
+    height: 50%;
+    padding: 12.5px 0;
+}
+
+.sidebar {
+    width: 20%;
+    float: left;
+    overflow: none;
+    display: flex; 
+    justify-content: space-around;
+    height: calc(100vh - 50px);
+    background-color: white;
+    border-right: 3px solid black;
+}
+
+.sidebar_create__todo {
+    width: 100%;
+    padding: 0px 25px;
+}
+
+.sidebar_createtodo {
+    font-size: 28px;
+    display: flex;
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.form-floating
+{
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 100px;
+}
+
+.sidebar_input {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group-text {
+    border: 1px solid black;
+}
+
+.form-control {
+    border-left: 1px solid black;
+}
+
+.createtodo_button {
+    margin-top: 5px;
+}
+
+.main {
+    width: 80%;
+    background-color: white;
+    float: left;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 50px 75px;
+}
+
+.todo_list {
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+.todo_text {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.date {
+    width: 100%;
+    font-size: 25px;
+    font-size: bold;
+    font-family: 'Copse', serif;
+}
+
+.todo {
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px 10px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    margin-left: 5px;
+}
+
+.btn_p {
+    padding: .340rem .50rem !important;
+    margin-top: 10px;
+}
+
+li::marker {
+    content: ' ' !important;
+}
+
+.buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.default_button {
+    margin: 10px;
+}
+
+.default_button:hover {
+    cursor: pointer;
+}
+
+.todo_text_font {
+    margin-left: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.todo_text_desc {
+    margin-left: 5px;
+    color: black;
+    padding: 8px;
+    border: solid 1px black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.done {
+    background-color: black;
+}
+
+.done p{
+    color: white;
+    text-decoration: line-through;
+}
+
+.style-add
+{
+    resize: None;
+    height: 100%;
+}
+
+.form-floating{
+    height: 100%;
+}
