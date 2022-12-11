@@ -3,7 +3,6 @@ const {ValidationError, CustomAPIError} = require('../errors/error-control')
 const moment = require('moment')
 const getTasksByUser = async (req, res) =>
 {
-    console.log('oi')
     try
     {
         var owner_user = req.user.usernameId

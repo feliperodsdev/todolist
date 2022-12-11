@@ -7,7 +7,7 @@ export const TasksContext = createContext<any>([])
 
 export const Tasks = () => 
 {
-    const {organizaList, listTasks} = useContext(MainContext)
+    const {organizaList, listTasks, showNotify} = useContext(MainContext)
 
     const deleteTodo = async (_id:string, indice:number) => 
     {
@@ -27,11 +27,12 @@ export const Tasks = () =>
                 const updatedList = listTasks
                 updatedList.splice(indice, 1)
                 organizaList([...updatedList])
+                showNotify('Tarefa deletada com sucesso', 'success')
             }
         }
         catch(e)
         {
-            console.log(e)
+            showNotify('Não foi possível deletar essa tarefa : (', 'error')
         }
     }
 
@@ -56,11 +57,12 @@ export const Tasks = () =>
                 else task.done = true
                 updatedList.splice(indice, 1)
                 organizaList([...updatedList, task])
+                showNotify('Parabéns! : )', 'success')
             }
         }
         catch(e)
         {
-            console.log(e)
+            showNotify('Não foi possível realizar essa operação!', 'error')
         }
     }
 
@@ -83,7 +85,7 @@ export const Tasks = () =>
         }
         catch(e)
         {
-            console.log(e)
+            showNotify('Ocorreu um erro, entre em contato com o desenvolvedor', 'error')
         }   
     }
 

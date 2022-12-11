@@ -15,7 +15,7 @@ export const Signin = () =>
 {
     const {register, handleSubmit} = useForm<InputsSignin>(); 
     const navigate = useNavigate();
-    const {optionUser, setOptionUser} = useContext(AppContext);
+    const {optionUser, setOptionUser, showNotify} = useContext(AppContext);
     const onSignin = async (data:InputsSignin, e:any) => 
     {
         try
@@ -25,18 +25,22 @@ export const Signin = () =>
                   "Content-Type": "application/json",
                 }
               };
-              console.log(data)
             const login = await api.post('/login', data, config);
             if(login.status==200)
             {
                 localStorage.setItem('token', login.data.token);
+                showNotify('Login realizado com sucesso!', 'success')
                 navigate('/home');
             }
         }
         catch(e:any)
         {
             const msg = e.response.data.msg
-            console.log(msg)
+            let msgEnviada = ''
+            if(msg=='Username ou senha nao enviados') msgEnviada = 'Usuário ou senha não digitados!'
+            else if(msg=='Password Invalid') msgEnviada = 'Senha incorreta!'
+            else if(msg=='User doesnt exists') msgEnviada = 'Usuário inválido!'
+            showNotify(msgEnviada, 'error')
         }
     }
 

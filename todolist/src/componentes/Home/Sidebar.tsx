@@ -14,7 +14,7 @@ export const Sidebar = () =>
 {
     const navigate = useNavigate(); 
     const {register, handleSubmit} = useForm<Task>(); 
-    const {listTasks, organizaList} = useContext(MainContext)
+    const {listTasks, organizaList, showNotify} = useContext(MainContext)
     const doLogout = () => 
     {
         navigate('/')
@@ -22,15 +22,23 @@ export const Sidebar = () =>
 
     const createTask = async (task:any) => 
     {   
-        var taskToBeAdd = task 
-        taskToBeAdd.done = false 
-        var token = localStorage.getItem('token')
-        const createTodo = await api.post('/task/operations', taskToBeAdd, {headers: {'Authorization': `Bearer ${token}`}})
-        if(createTodo.status==200)
+        try
         {
-            taskToBeAdd._id = createTodo.data._id
-            const task = [...listTasks, taskToBeAdd]
-            organizaList(task)
+            var taskToBeAdd = task 
+            taskToBeAdd.done = false 
+            var token = localStorage.getItem('token')
+            const createTodo = await api.post('/task/operations', taskToBeAdd, {headers: {'Authorization': `Bearer ${token}`}})
+            if(createTodo.status==200)
+            {
+                taskToBeAdd._id = createTodo.data._id
+                const task = [...listTasks, taskToBeAdd]
+                organizaList(task)
+                showNotify('Tarefa criada!', 'success')
+            }
+        }
+        catch(e:any)
+        {
+            showNotify('Preencha todos os campos!', 'error')
         }
     }
 

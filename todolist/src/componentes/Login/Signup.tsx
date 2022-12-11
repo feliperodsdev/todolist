@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {useForm} from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import {api} from '../../api/Api';
 import {toggleOption} from "../utils/utils";
 import {AppContext} from "../../App"
@@ -14,28 +13,69 @@ type InputsSignup = {
 
 export const Signup = () => 
 {
-    const {optionUser, setOptionUser} = useContext(AppContext); 
+    const {optionUser, setOptionUser, showNotify} = useContext(AppContext); 
     const {register, handleSubmit} = useForm<InputsSignup>(); 
-    const navigate = useNavigate(); 
     const onSignup = async(data:InputsSignup) => 
     {
         try 
         {
-            const config = 
+            let pass = true
+            let password = data.password
+            let tamPass = password.length
+            if(data.password == '' || data.passwordConfirm == '' || data.name == '' || data.user == '') 
             {
-                headers: {
-                    "Content-Type":"application/json", 
+                pass = false 
+                showNotify('Complete todos os campos!', 'error')
+            }
+            if(pass)
+            {
+                if(data.password != data.passwordConfirm) 
+                {
+                    showNotify('Senhas não combinam!', 'error')
                 }
-            }; 
-            const registrarUsuario = await api.post('/user/create', data, config)
-            if(registrarUsuario.status == 200)
-            {
-                toggleOption(optionUser, setOptionUser)
+                else 
+                {
+                    for(let i = 0; i<tamPass; i++)
+                    {
+                        if(password[i]==' ') 
+                        {
+                            pass = false 
+                            break 
+                        }
+                    }
+                    if(pass)
+                    {
+                        const config = 
+                        {
+                            headers: {
+                                "Content-Type":"application/json", 
+                            }
+                        }; 
+                        const registrarUsuario = await api.post('/user/create', data, config)
+                        if(registrarUsuario.status == 200)
+                        {
+                            toggleOption(optionUser, setOptionUser)
+                            showNotify('Usuario cadastrado : )', 'success')
+                        }
+                    }
+                    else 
+                    {
+                        showNotify('Não foi possível criar um novo usuário, tente mais tarde.', 'error')
+                    }
+                }
             }
         }
-        catch(e)
+        catch(e:any)
         {
-            console.log(e)
+            const msg = e.response.data.msg
+            if(msg == 'User already exists')
+            {
+                showNotify('Usuário já existe!', 'error')
+            }
+            else 
+            {
+                showNotify('Complete todos os campos!', 'error')
+            }
         }
     }
     return (
