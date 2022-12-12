@@ -8,6 +8,8 @@ type Task = {
     title: string, 
     content: string, 
     doat: Date, 
+    done: Boolean, 
+    _id: string, 
 }
 
 export const Sidebar = () => 
@@ -20,7 +22,7 @@ export const Sidebar = () =>
         navigate('/')
     }
 
-    const createTask = async (task:any) => 
+    const createTask = async (task:Task) => 
     {   
         try
         {

@@ -19,3 +19,71 @@ Após clonar o respositório, crie as variáveis de ambiente sendo elas:
     -> SECRET_KEY e KEY_VALUE -> (string, number) -- utilizei para encriptação de senhas. 
 
 Após isso basta dar um 'npm start' tanto na pasta raiz do projeto quanto na pasta 'todolist' dentro do projeto, então, estará com o frontend e backend rodando. 
+
+<h2>Endpoints da API</h2>
+
+---------"/login"--------- 
+
+Post -> {
+    username: string, 
+    password: string
+} -> Fazer autenticação do usuário
+
+---------"/user/create"---------  
+
+Post -> {
+    user: string, 
+    name: string, 
+    password: string, 
+    confirmPassword: string
+} -> Criar usuário
+
+---------"/task/operations"---------
+
+Post -> 
+{
+    headers: 
+    {
+        Authorization: Bearer
+    }
+    body: 
+    {
+        title: string, 
+        content: string, 
+        doat: Date, 
+        done: Boolean, 
+        _id: string
+    }
+} -> Criar tarefa para o usuário logado
+
+Delete -> 
+{
+    headers: 
+    {
+        Authorization: Bearer
+    }
+    body: 
+    {
+        _id: string 
+    } 
+} -> Deleta a tarefa do usuário
+
+Put -> 
+{
+    headers: 
+    {
+        Authorization: Bearer
+    }
+    body: 
+    {
+        _id: string 
+    } 
+} -> Deleta a tarefa do usuário
+
+Get -> 
+{
+    headers: 
+    {
+        Authorization: Bearer
+    }
+} -> Retorna todas as tarefas vinculadas ao usuário logado
