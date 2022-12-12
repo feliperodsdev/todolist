@@ -39,7 +39,6 @@ const deleteTask = async (req, res) =>
 {
     var owner_user = req.user.usernameId
     var taskToBeDeleted = req.params
-    console.log(taskToBeDeleted)
     var task = await taskModel.find({_id: taskToBeDeleted._id, owner_user:owner_user})
     if(task.length > 0)
     {
@@ -66,7 +65,6 @@ const doneTodo = async (req, res) =>
     try
     {
         var task = await taskModel.find({_id: _id, owner_user:owner_user}) 
-        console.log(owner_user, _id)
         if(task.length == 1)
         {
             if(task[0].done)
