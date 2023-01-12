@@ -4,6 +4,7 @@
   
 
 Esse é um projeto pessoal para alavancar meus conhecimentos em desenvolvimento web. Trata-se um Gerenciador De Tarefas feito em React e NodeJS. Utilizei algumas tecnologias como Typescript e ferramentas de encriptação.
+Link: https://frontend-todolist-one.vercel.app/
 
   
 
